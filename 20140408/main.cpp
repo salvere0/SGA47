@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// template test
+// 템플릿 테스트.
 int main(void)
 {
 
