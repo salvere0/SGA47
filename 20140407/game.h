@@ -5,6 +5,7 @@
 #include <cstdlib>  // srand, rand
 #include <ctime> // time, clock
 #include <windows.h>
+#include <iomanip>
 
 using namespace std;
 
@@ -44,7 +45,7 @@ public :
 		, myPoint(width/2, height/2), myMeat()
 		, meat_count(0), bordersize(1), mp_index(0)
 		, board(NULL), meat_position(NULL)
-		, speed(1), update_dt(0)
+		, speed(1.f), update_dt(0)
 		, direction(LEFT)
 	{
 		srand((unsigned)time(NULL));
@@ -94,10 +95,11 @@ public :
 			}
 			else if (key == 'a' || key == 'A')
 			{
-				if (myPoint.x - 1 < bordersize)
-					return true;
+				direction = LEFT;
+				//if (myPoint.x - 1 < bordersize)
+				//	return true;
 
-				myPoint.x--;
+				//myPoint.x--;
 			}
 			else if (key == 'd' || key == 'D')
 			{
@@ -109,17 +111,25 @@ public :
 			}
 			else if (key == 'w' || key == 'W')
 			{
-				if (myPoint.y - 1 < bordersize)
-					return true;
+				direction = UP;
 
-				myPoint.y--;
+				//if (myPoint.y - 1 < bordersize)
+				//	return true;
+
+				//myPoint.y--;
 			}
 			else if (key == 's' || key == 'S')
 			{
-				if (myPoint.y + 1 >= height - bordersize)
-					return true;
+				direction = DOWN;
 
-				myPoint.y++;
+				//if (myPoint.y + 1 >= height - bordersize)
+				//	return true;
+
+				//myPoint.y++;
+			}
+			else if (key == '+')
+			{
+				speed += 0.1f;
 			}
 
 			need_to_update = true;
@@ -140,6 +150,8 @@ public :
 			{
 				meat_exist = false;
 				meat_count++;
+
+				speed = speed + 0.1f;
 			}
 
 			if (direction == LEFT)
@@ -223,6 +235,7 @@ public :
 				cout << endl;
 			}
 			cout << "current eaten count : " << meat_count << endl;
+			cout << "current speed : " << setw(4) << speed << endl;
 
 			need_to_draw = false;
 		}
@@ -250,7 +263,7 @@ private :
 
 	//////////////////////////
 	// ÀÚµ¿ ¿òÁ÷ÀÓ...
-	clock_t speed;			// 1Ä­/s
+	float speed;			// 1Ä­/s
 	clock_t update_dt;
 
 	int direction; // left(0), top(1), right(2), bottom(3)
