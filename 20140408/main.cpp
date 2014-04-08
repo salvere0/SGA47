@@ -7,6 +7,7 @@ using namespace std;
 // 템플릿 테스트.
 int main(void)
 {
+	cout << "hello world" << endl;
 
 	_getch();
 	return 0;
