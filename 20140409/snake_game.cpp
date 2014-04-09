@@ -1,6 +1,5 @@
 ﻿#include "game.h"
 
-// 주석 추가...
 int main(void)
 {
 	game snakegame;
